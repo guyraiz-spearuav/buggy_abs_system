@@ -1,4 +1,10 @@
 void wheel_speed_calculation() {
+  if (millis() < right_wheel_timer + WHEEL_SPEED_TIMEOUT_MS / NUMBER_OF_PROBES) {
+    right_wheel_speed = 0;
+  }
+  if (millis() < left_wheel_timer + WHEEL_SPEED_TIMEOUT_MS / NUMBER_OF_PROBES) {
+    right_wheel_speed = 0;
+  }
   if (run_right_wheel_speed_function) {
     right_wheel_speed = wheel_speed (right_wheel_timer, previous_right_wheel_timer);
     run_right_wheel_speed_function = false;
@@ -12,7 +18,7 @@ void wheel_speed_calculation() {
 
 float wheel_speed(long unsigned int x, long unsigned int y) {
   int delta = x - y;
-  float RPS = 1000 / delta;
+  float RPS = 1000 / delta / NUMBER_OF_PROBES;
   return RPS * TYRE_CIRCUMFRENCE_MM / 1000;
 }
 
