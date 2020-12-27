@@ -1,5 +1,36 @@
-#define rightwheelpin 2 // pin to interrupt for right wheel speed
-#define leftwheelpin 3 // pin to interrupt for left wheel speed
+float wheel_speed(long unsigned int, long unsigned int);
+
+//input pins
+const int right_wheel_sensor_pin = 2;
+const int left_wheel_sensor_pin = 3;
+
+
+//output pins
+const int right_solenoids_pin [3] = {4, 5, 6};
+const int left_solenoids_pin [3] = {7, 8, 9};
+const int front_solenoids_pin [3] = {10, 11, 12};
+const int pump_pin = 13;
+
+
+//tyre dimensions
+const int TYRE_WIDTH_MM = 90;
+const int TYRE_PROFILE_PERCENT = 90;
+const int RIM_DIAMETER_INCH = 21;
+
+
+//base calculation
+const int TYRE_CIRCUMFRENCE_MM = (TYRE_WIDTH_MM / 100 * TYRE_PROFILE_PERCENT * 2 + RIM_DIAMETER_INCH * 25.4) * PI;
+
+
+
+long unsigned int right_wheel_timer;
+long unsigned int previous_right_wheel_timer;
+long unsigned int left_wheel_timer;
+long unsigned int previous_left_wheel_timer;
+
+
+#define rightwheelpin 1 // in inches
+#define leftwheelpin 2 // in inches
 #define tirediameter 20 // in inches
 #define pings 1 // number of pings expected for a single revolution
 #define mindelta 3 //minimum speed delta between right and left wheels to initiate compensation
@@ -32,8 +63,8 @@ float rightmps; // right wheel speed
 float leftmps; // left wheel speed
 float speeddelta; //speed difference between rear wheels
 void setup() {
-  attachInterrupt(digitalPinToInterrupt(rightwheelpin), rightwheelspeed, RISING); //right wheel speed interrupt
-  attachInterrupt(digitalPinToInterrupt(leftwheelpin), leftwheelspeed, RISING); //left wheel speed interrupt
+  attachInterrupt(digitalPinToInterrupt(rightwheelpin), rightwheelping, RISING); //right wheel speed interrupt
+  attachInterrupt(digitalPinToInterrupt(leftwheelpin), leftwheelping, RISING); //left wheel speed interrupt
 }
 
 void loop() {
@@ -58,16 +89,12 @@ void loop() {
 }
 
 
-void rightwheelspeed () {
-  int delta = millis() - rightwheeltimer; // calculate time delta from previous ping
-  float rps = 1000 / delta / pings; //calculate revolution per second
-  rightmps = rps * tirecircumfrence; //calculate speed in meters/second
-  rightwheeltimer = millis(); //zero the delta
+void rightwheelping () {
+  previous_right_wheel_timer = right_wheel_timer;
+  right_wheel_timer = millis();
 }
 
-void leftwheelspeed () {
-  int delta = millis() - leftwheeltimer; // calculate time delta from previous ping
-  float rps = 1000 / delta / pings; //calculate revolution per second
-  leftmps = rps * tirecircumfrence; //calculate speed in meters/second
-  leftwheeltimer = millis(); //zero the delta
+void leftwheelping () {
+  previous_left_wheel_timer = right_wheel_timer;
+  left_wheel_timer = millis();
 }
