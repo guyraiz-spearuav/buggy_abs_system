@@ -16,8 +16,8 @@ void wheel_speed_calculation() {
 }
 
 
-float wheel_speed(long unsigned int x, long unsigned int y) {
-  int delta = x - y;
+float wheel_speed(long unsigned int timer, long unsigned int previous_timer) {
+  int delta = timer - previous_timer;
   float RPS = 1000 / delta / NUMBER_OF_PROBES;
   return RPS * TYRE_CIRCUMFRENCE_MM / 1000;
 }

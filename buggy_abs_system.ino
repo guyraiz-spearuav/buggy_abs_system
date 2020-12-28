@@ -17,7 +17,7 @@ int diff_lock_brake(float); //run pid calculation for diff lock emulation
 void rightwheelping (void); // interrupt for right wheel speed
 void leftwheelping (void); // interrupt for left wheel speed
 void solenoid_output(int, bool); // for outputing values to solenoids
-void solenoids_function(int, const int); //to calculate which solenoids are open/closed
+void set_solenoids_position(int, const int); //to calculate which solenoids are open/closed
 void setup_pid(void); // for setting up pid operation
 
 
@@ -50,9 +50,9 @@ const int TYRE_CIRCUMFRENCE_MM = (TYRE_WIDTH_MM / 100 * TYRE_PROFILE_PERCENT * 2
 
 
 // constants
-const int Right = 0; // for "solenoids_function" helper function
-const int Left = 1; // for "solenoids_function" helper function
-const int Front = 2; // for "solenoids_function" helper function
+const int Right = 0; // for "set_solenoids_position" helper function
+const int Left = 1; // for "set_solenoids_position" helper function
+const int Front = 2; // for "set_solenoids_position" helper function
 
 const int PWM_MAX_VALUE = 0; // pwm minimum viable value
 const int PWM_MIN_VALUE = 255; // pwm maximum viable value

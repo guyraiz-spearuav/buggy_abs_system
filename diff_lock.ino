@@ -10,8 +10,8 @@ void rear_speed_difference() {
   }
 }
 
-int diff_lock_brake(float x) {
-  Input = x;
+int diff_lock_brake(float speed_delta) {
+  Input = speed_delta;
   diff_lock_PID.Compute();
   return Output;
 }

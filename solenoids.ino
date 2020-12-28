@@ -1,36 +1,36 @@
 void solenoids() { // set solenoid positions
-  solenoids_function(rear_right_brake_solenoid_strength, Right); // rear right
-  solenoids_function(rear_left_brake_solenoid_strength, Left); // rear left
-  solenoids_function(front_brake_solenoid_strength, Front); // front
+  set_solenoids_position(rear_right_brake_solenoid_strength, Right); // rear right
+  set_solenoids_position(rear_left_brake_solenoid_strength, Left); // rear left
+  set_solenoids_position(front_brake_solenoid_strength, Front); // front
 }
 
-void solenoids_function(int x, int y) {
-  if (y == Front) {
+void set_solenoids_position(int strength, int Position) {
+  if (Position == Front) {
     for (int i = 0; i <= 2; i ++) {
       front_solenoids[i] = false;
     }
-    if (x > 0) {
-      for (int i = 0; i <= x; i ++) {
+    if (strength > 0) {
+      for (int i = 0; i <= strength; i ++) {
         front_solenoids[i + 1] = true;
       }
     }
   }
-  if (y == Right) {
+  if (Position == Right) {
     for (int i = 0; i <= 2; i ++) {
       rear_right_solenoids[i] = false;
     }
-    if (x > 0) {
-      for (int i = 0; i <= x; i ++) {
+    if (strength > 0) {
+      for (int i = 0; i <= strength; i ++) {
         rear_right_solenoids[i] = true;
       }
     }
   }
-  if (y == Left) {
+  if (Position == Left) {
     for (int i = 0; i <= 2; i ++) {
       rear_left_solenoids[i] = false;
     }
-    if (x > 0) {
-      for (int i = 0; i <= x; i ++) {
+    if (strength > 0) {
+      for (int i = 0; i <= strength; i ++) {
         rear_left_solenoids[i] = true;
       }
     }

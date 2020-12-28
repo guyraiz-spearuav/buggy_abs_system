@@ -5,8 +5,8 @@ void outputs() {
   analogWrite(pump_pin, abs_pump_strength); // output to abs pump
 }
 
-void solenoid_output(const int x[], bool y[]) {
+void solenoid_output(const int pin[], bool Position[]) {
   for (int i = 0; i <= 2; i ++) {
-    digitalWrite(x [i], y [i]);
+    digitalWrite(pin [i], Position [i]);
   }
 }
