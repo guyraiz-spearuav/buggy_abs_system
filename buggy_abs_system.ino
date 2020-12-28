@@ -33,7 +33,7 @@ const int pump_pin = 1; //// output pin of abs pump
 
 //tyre and wheel constants
 const int TYRE_WIDTH_MM = 90; // width of tyre in mm
-const int TYRE_PROFILE_PERCENT = 90; //  tyre profile in percentage of tyre widht 
+const int TYRE_PROFILE_PERCENT = 90; //  tyre profile in percentage of tyre widht
 const int RIM_DIAMETER_INCH = 21; // diameter of tyre rim in inches
 const int NUMBER_OF_PROBES = 1; // number of wheel speed probes
 
@@ -52,10 +52,10 @@ const int WHEEL_SPEED_TIMEOUT_MS = 2500; // if this time passed since a wheel sp
 
 
 //timers
-long unsigned int right_wheel_timer; // timer for rear right wheel speed calculation 
-long unsigned int previous_right_wheel_timer; // timer for rear right wheel speed calculation 
-long unsigned int left_wheel_timer; // timer for rear left wheel speed calculation 
-long unsigned int previous_left_wheel_timer; // timer for rear left wheel speed calculation 
+long unsigned int right_wheel_timer; // timer for rear right wheel speed calculation
+long unsigned int previous_right_wheel_timer; // timer for rear right wheel speed calculation
+long unsigned int left_wheel_timer; // timer for rear left wheel speed calculation
+long unsigned int previous_left_wheel_timer; // timer for rear left wheel speed calculation
 
 
 //global variables
@@ -66,7 +66,7 @@ bool run_right_wheel_speed_function; // for rear left wheel speed calculation
 int rear_right_brake_solenoid_strength; // how many solenoids should be open for rear right brake
 int rear_left_brake_solenoid_strength; // how many solenoids should be open for rear left brake
 int front_brake_solenoid_strength; // how many solenoids should be open for front brake
-int abs_pump_strength; // strength of ABS pump 
+int abs_pump_strength; // strength of ABS pump
 bool rear_right_solenoids[3]; // for solenoids operation - rear right
 bool rear_left_solenoids[3]; // for solenoids operation - rear left
 bool front_solenoids[3]; // for solenoids operation - front
@@ -77,7 +77,7 @@ int brake_strength_from_lock; // for locking loops operation
 int brake_strength_from_lever; // how strong is the user applying the brake
 bool lock_right; // lock the rear right wheel
 bool lock_left; // lock the rear left wheel
-bool lock_rear; // lock the rear axle 
+bool lock_rear; // lock the rear axle
 bool difflock; // imitate differential lock
 
 
@@ -88,9 +88,9 @@ void setup() {
 
 
 void loop() {
-  wheel_speed_calculation();
-  readings();
-  solenoids();
-  abs_pump();
-  outputs();
+  wheel_speed_calculation(); // calculate wheels speeds 
+  readings(); // read inputs from user
+  solenoids(); // solenoid functions
+  abs_pump(); // abs pump functions
+  outputs(); // output values to physical elements
 }

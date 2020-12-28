@@ -1,7 +1,7 @@
-void solenoids() {
-  solenoids_function(rear_right_brake_solenoid_strength, Right);
-  solenoids_function(rear_left_brake_solenoid_strength, Left);
-  solenoids_function(front_brake_solenoid_strength, Front);
+void solenoids() { // set solenoid positions
+  solenoids_function(rear_right_brake_solenoid_strength, Right); // rear right
+  solenoids_function(rear_left_brake_solenoid_strength, Left); // rear left
+  solenoids_function(front_brake_solenoid_strength, Front); // front
 }
 
 void solenoids_function(int x, int y) {
