@@ -52,33 +52,33 @@ const int WHEEL_SPEED_TIMEOUT_MS = 2500; // if this time passed since a wheel sp
 
 
 //timers
-long unsigned int right_wheel_timer;// 
-long unsigned int previous_right_wheel_timer;
-long unsigned int left_wheel_timer;
-long unsigned int previous_left_wheel_timer;
+long unsigned int right_wheel_timer; // timer for rear right wheel speed calculation 
+long unsigned int previous_right_wheel_timer; // timer for rear right wheel speed calculation 
+long unsigned int left_wheel_timer; // timer for rear left wheel speed calculation 
+long unsigned int previous_left_wheel_timer; // timer for rear left wheel speed calculation 
 
 
 //global variables
-float right_wheel_speed;
-float left_wheel_speed;
-bool run_left_wheel_speed_function;
-bool run_right_wheel_speed_function;
-int rear_right_brake_solenoid_strength;
-int rear_left_brake_solenoid_strength;
-int front_brake_solenoid_strength;
-int abs_pump_strength;
-bool rear_right_solenoids[3];
-bool rear_left_solenoids[3];
-bool front_solenoids[3];
-int brake_strength_from_lock;
+float right_wheel_speed; // rear right wheel real time speed
+float left_wheel_speed; // rear left wheel real time speed
+bool run_left_wheel_speed_function; // for rear left wheel speed calculation
+bool run_right_wheel_speed_function; // for rear left wheel speed calculation
+int rear_right_brake_solenoid_strength; // how many solenoids should be open for rear right brake
+int rear_left_brake_solenoid_strength; // how many solenoids should be open for rear left brake
+int front_brake_solenoid_strength; // how many solenoids should be open for front brake
+int abs_pump_strength; // strength of ABS pump 
+bool rear_right_solenoids[3]; // for solenoids operation - rear right
+bool rear_left_solenoids[3]; // for solenoids operation - rear left
+bool front_solenoids[3]; // for solenoids operation - front
+int brake_strength_from_lock; // for locking loops operation
 
 
 //readings
-int brake_strength_from_lever;
-bool lock_right;
-bool lock_left;
-bool lock_rear;
-bool difflock;
+int brake_strength_from_lever; // how strong is the user applying the brake
+bool lock_right; // lock the rear right wheel
+bool lock_left; // lock the rear left wheel
+bool lock_rear; // lock the rear axle 
+bool difflock; // imitate differential lock
 
 
 void setup() {
